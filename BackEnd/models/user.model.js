@@ -1,36 +1,33 @@
+ 
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema(
-  {
-    name: {
-        type: String,
-        required: true, 
-        trim: true,     
-      },
-      email: {
-        type: String,
-        required: true,
-        unique: true,    
-        lowercase: true, 
-      },
-      password: {
-        type: String,
-        required: true,
-      },
-      image: {
-        type: String,   
-        default: "https://www.viverefermo.it/images/user.png",  
-        required: false
-      },
-      phoneNumber: { 
-        type: String, 
-        required: false },
-  },
-  { timestamps: true },
-);
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
+  image: { 
+    type: String,
+    required: true,
+    default: 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
+  }
+});
+ 
+userSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+  
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 
-module.exports = mongoose.model(
-  'User',
-  userSchema,
-);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

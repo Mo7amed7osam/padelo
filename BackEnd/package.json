@@ -4,15 +4,18 @@
   "description": "Backend server handling API requests, user authentication, and database operations",
   "main": "index.js",
   "scripts": {
-    "start": " nodemon server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "intellisense": "^0.0.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.3",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.7",
