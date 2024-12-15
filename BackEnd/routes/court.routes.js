@@ -12,4 +12,6 @@ router.delete('/:id', courtController.deleteCourt);
 
 router.get('/search', courtController.searchCourts);
 
+router.get('/:id', courtController.getCourtById);
+
 module.exports = router;
