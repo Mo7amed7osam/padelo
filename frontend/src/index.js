@@ -12,7 +12,7 @@ import Register from './Pages/RegisterPage';
 import reportWebVitals from './reportWebVitals';
 import Admin from './Pages/AdminsPage';
 import Admin2 from './Pages/adminPage2';
-
+import Reservation from './Pages/ReservationPage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -27,6 +27,8 @@ root.render(
         <Route path="/Register" element={<Register />} />
         <Route path="/Admin" element={<Admin />} />
         <Route path="/Admin2" element={<Admin2 />} />
+        <Route path="/Reservation" element={<Reservation />} />
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
